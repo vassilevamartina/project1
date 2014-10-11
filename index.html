@@ -16,18 +16,20 @@
   <body x-ng-app="TicTacApp" x-ng-controller="TTTCtrl">
 
     <div class="header">
-      <p>Tic-Tac-To e<p>
+      <p>Tic-Tac-Toe<p>
     </div> 
 
   <div class="gameboard">
     <div class="cell" x-ng-repeat=" mySingleCell in board"
      x-ng-class="{clearFix: (mySingleCell.pos % 3) == 0}"
-     x-ng-click="makeMove()">
-      {{mySingleCell.status;}}
+     x-ng-click="makeMove()">{{mySingleCell.status;}}
     </div>
   </div>
+
 
   <input="text", placeholder="Say something"/>
 
   </body>
+</html>
+
 </html>

@@ -1,5 +1,4 @@
-    
-body	{
+body  {
   font-family: 'Lobster Two', cursive;
   margin: 0 auto;
 }
@@ -26,8 +25,7 @@ p  {
   width: 150px; 
   height: 150px; 
   float: left; 
-  box-shadow:5px 5px 5px #d3d3d3;
-  border: 2px none #d3d3d3;
+  border: 2px solid #d3d3d3;
   border-radius: 15px;
 }
 
@@ -42,5 +40,3 @@ p  {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-
-
