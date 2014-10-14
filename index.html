@@ -17,19 +17,17 @@
 
     <div class="header">
       <p>Tic-Tac-Toe<p>
-    </div> 
+    </div>  
 
   <div class="gameboard">
     <div class="cell" x-ng-repeat=" mySingleCell in board"
      x-ng-class="{clearFix: (mySingleCell.pos % 3) == 0}"
-     x-ng-click="makeMove()">{{mySingleCell.status;}}
+     x-ng-classclick="makeMove()">
+      {{mySingleCell.status;}}
     </div>
   </div>
-
 
   <input="text", placeholder="Say something"/>
 
   </body>
-</html>
-
 </html>
