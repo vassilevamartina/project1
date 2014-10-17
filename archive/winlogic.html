@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title></title>
+	<html>
+
+<script>
+
+function testWin(moves){
+  var winners = [[0,1,2, "top row"],[3,4,5, "middle row"],[6,7,8, "bottom row"],[0,3,6, "left column"],[1,4,7, "middle column"],[2,5,8, "right column"],[0,4,8, "left diagonal"],[2,4,6,   "right diagonal"]];
+  for(var i in winners){
+    //console.log(i, winners[i]); search my array of 8 possible winners; each i is a winning combination. 
+    var count = 0;
+    for (var n=0; n < winners[i].length-1; n++){
+      //console.log(winners[i][n]); for each winning array pointed to by "i", "n" will point to a winning number inside that array. there are 24 numbers total. on the previous line we              inititated our count variable.
+      for(var x in moves){
+        if (winners[i][n]==moves[x]){
+          //console.log("OhEmGee"); moves is a combination of plays by x. we want to iterate through each winning combination (i) for a matching number (n) until we find a match for x. everytime we find a match for x our count will increment until it reaches 3 matches within the same winning array. Then we declare a winner. 
+          count++;
+        }
+      } 
+    }
+  if (count==3)
+    return winners[i][3]
+  }
+}
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
