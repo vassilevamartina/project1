@@ -3,6 +3,10 @@
 <head>
         <title>Project 1 - Tic Tac Toe</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <!-- firebase -->
+        <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+        <!-- angular fire --> 
+        <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
         <script src="main.js"></script>
         <link type="text/css" rel="stylesheet" href="style.css" />
 
@@ -13,15 +17,17 @@
     
         <div id="theBox">
         <h1>{{testString}}</h1>
+        <div ng-bind="notification"></div>
           <div ng-repeat="currentCell in cellList">
             <div id="C{{currentCell.xoStatus}}" class="float_left box" ng-click="playerPicks(currentCell)"
               ng-class="{blue: currentCell.xoStatus =='X',red: currentCell.xoStatus =='O'}">
-              <p>{{currentCell.xoStatus}}</p>
+              <p ng-bind="currentCell.xoStatus"></p>
             </div>
-          </div>
+          </div>          
           <div class="clearboth"></div>
           <br>
           <button ng-click="testJS()">START GAME</button>
+<!--           <button ng-click="count = count + 1" ng-init="count=0">Increment</button> {{count}} -->
         </div>
         <!-- <p id="demo">HI</p> -->
 

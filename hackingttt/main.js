@@ -13,7 +13,8 @@ TTTApp.controller('TTTController', function ($scope) {
     // uncomment and look in console
     // console.log("Cell was: " + oneCellObject.xoStatus);
     var status;
-    if (($scope.movecounter % 2) == 0) {
+    $scope.movecounter++;
+    if (($scope.movecounter % 2) == 1) {
       $scope.xMoves.push(oneCellObject.xoStatus);
       oneCellObject.xoStatus = "X" ;
       status = testWin($scope.xMoves);
@@ -24,15 +25,14 @@ TTTApp.controller('TTTController', function ($scope) {
       oneCellObject.xoStatus = "O" ;
       status = testWin($scope.oMoves);
       console.log($scope.oMoves);
+      console.log()
     }
 
-    if(status.length > 0)
-    {
-      alert(status + " won");
+    if(status.length > 0) {
+      $scope.notification = status;
     }
     // uncomment and look in console
     // console.log("Cell is now: " + oneCellObject.xoStatus);
-    $scope.movecounter++;
   };
 
   var testWin = function(moves) {
@@ -42,19 +42,28 @@ TTTApp.controller('TTTController', function ($scope) {
     // All 8 winning possibilities
     for(var i in winners){
       var count = 0;
+      
       // Go through each cell that's a part of this winner
       for (var n=0; n < winners[i].length-1; n++){
+        // console.log("count" + count)
         for(var x in moves){
-          if(winners[i][n]==moves[x]){
+          if(winners[i][n] == moves[x]){
             count++;
+            console.log(count);
             break;  // If we matched, no need to continue looking for this one
           }
         }
       }
-      if (count==3)
-        return winners[i][3];
+      if (count==3){
+        return winners[i][3] + " won";
+      }
     }
-    return "";
+    if ($scope.movecounter == 9){
+      return "Tie";
+      console.log("tie")
+    }
+    else 
+      return "";
   };
   
 //test connection via console
@@ -70,6 +79,8 @@ TTTApp.controller('TTTController', function ($scope) {
       {xoStatus: 7}, 
       {xoStatus: 8}
     ];
+
+    $scope.notification = "";
 
     $scope.xMoves = [];
     $scope.oMoves = [];
