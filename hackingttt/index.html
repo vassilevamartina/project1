@@ -17,8 +17,8 @@
     
         <div id="theBox">
         <h1>{{testString}}</h1>
-        <div ng-bind="db.notification"></div>
-          <div ng-repeat="currentCell in db.cellList">
+        <div ng-bind="notification"></div>
+          <div ng-repeat="currentCell in cellList">
             <div id="C{{currentCell.xoStatus}}" class="float_left box" ng-click="playerPicks(currentCell)"
               ng-class="{blue: currentCell.xoStatus =='X',red: currentCell.xoStatus =='O'}">
               <p ng-bind="currentCell.xoStatus"></p>
@@ -26,7 +26,8 @@
           </div>          
           <div class="clearboth"></div>
           <br>
-          <button ng-click="testJS()">START GAME</button> 
+          <button ng-click="testJS()">START GAME</button>
+<!--           <button ng-click="count = count + 1" ng-init="count=0">Increment</button> {{count}} -->
         </div>
         <!-- <p id="demo">HI</p> -->
 

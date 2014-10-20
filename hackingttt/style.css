@@ -10,7 +10,7 @@
 	width:540px;
 	text-align: center;
 	border-radius: 10px;
-  	margin: 0 auto; 
+  margin: 0 auto; 
 }
 .box{
 	width:150px; 
@@ -23,16 +23,16 @@
 	box-shadow: 10px 10px 5px #888;
 	margin-left:10px;
 	margin-right:10px;
-	background-color: #d3d3d3;
+	background-color: gray;
 }
 
 
 .red{
-	background-color: #gray;
+	background-color: red;
 }
 
 .blue{
-	background-color: #gray;
+	background-color: blue;
 }
 
 p {
@@ -43,7 +43,7 @@ p {
 	text-align: center; 
 	font-family: arial; 
 	font-size: 35pt; 
-	color: black;
+	color: lightgray;
 }
 
 /*the usual suspects begin*/

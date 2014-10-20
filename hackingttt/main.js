@@ -1,58 +1,35 @@
-var TTTApp = angular.module('TTTApp', ['firebase']);
+var TTTApp = angular.module('TTTApp', []);
 
-TTTApp.controller('TTTController', function ($scope, $firebase) {
-var ticTacRef = new Firebase("https://testttttest.firebaseio.com");
-var sync = $firebase(ticTacRef) ;
-sync.$bind($scope, "db");
+TTTApp.controller('TTTController', function ($scope) {
 
-ticTacRef.once("value", function(data){
-  console.log(data.val());
-    console.log($scope.imPlayer);
-  if(!data.val() || data.val().numPlayers == 2){
-    $scope.imPlayer = 0;
-  }
-  else {
-    $scope.imPlayer = 1;
-  }
-});
 
-// $scope.db={
-//   movecounter = $scope.movecounter,
-//   cellList = $scope.cellList,
-//   numPlayers: $scope.imPlayer +1
-// }
-// });
 
 //player pick box
   $scope.playerPicks = function(oneCellObject) {
-    if (oneCellObject.xoStatus == "X" || oneCellObject.xoStatus == "O" || $scope.imPlayer != ($scope.db.movecounter % 2)){
+    if (oneCellObject.xoStatus == "X" || oneCellObject.xoStatus == "O"){
       return;
     }
 
     // uncomment and look in console
     // console.log("Cell was: " + oneCellObject.xoStatus);
-
-    //"c" is the first letter of the name of a property being attached to the xmoves object. ex: c1 c2 c3...c8
-    //we're using the xMoves and oMoves objects as if they were arrays. 
     var status;
-    $scope.db.movecounter++;
-    if (($scope.db.movecounter % 2) == 1) {
-      // the following line is as if we're pushing the net move value on to the xMoves "array"(it's really an object).
-      $scope.db.xMoves["c" + oneCellObject.xoStatus] = oneCellObject.xoStatus;
+    $scope.movecounter++;
+    if (($scope.movecounter % 2) == 1) {
+      $scope.xMoves.push(oneCellObject.xoStatus);
       oneCellObject.xoStatus = "X" ;
-      status = testWin($scope.db.xMoves);
-      console.log($scope.db.xMoves);
+      status = testWin($scope.xMoves);
+      console.log($scope.xMoves);
     } else {
 
-      $scope.db.oMoves["c" + oneCellObject.xoStatus] = oneCellObject.xoStatus;
+      $scope.oMoves.push(oneCellObject.xoStatus);
       oneCellObject.xoStatus = "O" ;
-      status = testWin($scope.db.oMoves);
-      console.log($scope.db.oMoves);
+      status = testWin($scope.oMoves);
+      console.log($scope.oMoves);
       console.log()
     }
 
     if(status.length > 0) {
-      $scope.db.notification = status;
+      $scope.notification = status;
     }
     // uncomment and look in console
     // console.log("Cell is now: " + oneCellObject.xoStatus);
@@ -70,8 +47,6 @@ ticTacRef.once("value", function(data){
       for (var n=0; n < winners[i].length-1; n++){
         // console.log("count" + count)
         for(var x in moves){
-          if(x == "z")
-            continue;
           if(winners[i][n] == moves[x]){
             count++;
             console.log(count);
@@ -93,24 +68,24 @@ ticTacRef.once("value", function(data){
   
 //test connection via console
   $scope.testJS = function() {
-    $scope.db.cellList = [
-        {xoStatus: 0}, 
-        {xoStatus: 1}, 
-        {xoStatus: 2}, 
-        {xoStatus: 3}, 
-        {xoStatus: 4}, 
-        {xoStatus: 5}, 
-        {xoStatus: 6}, 
-        {xoStatus: 7}, 
-        {xoStatus: 8}
+    $scope.cellList = [
+      {xoStatus: 0}, 
+      {xoStatus: 1}, 
+      {xoStatus: 2}, 
+      {xoStatus: 3}, 
+      {xoStatus: 4}, 
+      {xoStatus: 5}, 
+      {xoStatus: 6}, 
+      {xoStatus: 7}, 
+      {xoStatus: 8}
     ];
 
-    $scope.db.notification = "";
+    $scope.notification = "";
 
-    $scope.db.xMoves = {z:0};
-    $scope.db.oMoves = {z:0};
+    $scope.xMoves = [];
+    $scope.oMoves = [];
 
     $scope.testString = "Tic Tac Toe" ;
-    $scope.db.movecounter = 0 ;
+    $scope.movecounter = 0 ;
   } ;
 }) ;
