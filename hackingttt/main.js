@@ -5,11 +5,27 @@ var ticTacRef = new Firebase("https://testttttest.firebaseio.com");
 var sync = $firebase(ticTacRef) ;
 sync.$bind($scope, "db");
 
-$scope.db={};
+ticTacRef.once("value", function(data){
+  console.log(data.val());
+    console.log($scope.imPlayer);
+  if(!data.val() || data.val().numPlayers == 2){
+    $scope.imPlayer = 0;
+  }
+  else {
+    $scope.imPlayer = 1;
+  }
+});
+
+// $scope.db={
+//   movecounter = $scope.movecounter,
+//   cellList = $scope.cellList,
+//   numPlayers: $scope.imPlayer +1
+// }
+// });
 
 //player pick box
   $scope.playerPicks = function(oneCellObject) {
-    if (oneCellObject.xoStatus == "X" || oneCellObject.xoStatus == "O"){
+    if (oneCellObject.xoStatus == "X" || oneCellObject.xoStatus == "O" || $scope.imPlayer != ($scope.db.movecounter % 2)){
       return;
     }
 
@@ -78,15 +94,15 @@ $scope.db={};
 //test connection via console
   $scope.testJS = function() {
     $scope.db.cellList = [
-      {xoStatus: 0}, 
-      {xoStatus: 1}, 
-      {xoStatus: 2}, 
-      {xoStatus: 3}, 
-      {xoStatus: 4}, 
-      {xoStatus: 5}, 
-      {xoStatus: 6}, 
-      {xoStatus: 7}, 
-      {xoStatus: 8}
+        {xoStatus: 0}, 
+        {xoStatus: 1}, 
+        {xoStatus: 2}, 
+        {xoStatus: 3}, 
+        {xoStatus: 4}, 
+        {xoStatus: 5}, 
+        {xoStatus: 6}, 
+        {xoStatus: 7}, 
+        {xoStatus: 8}
     ];
 
     $scope.db.notification = "";
